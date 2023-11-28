@@ -1,0 +1,11 @@
+﻿@model IEnumerable<DotNet_TP1.Models.Movie>
+
+<h1>Movies</h1>
+
+@foreach (var item in Model)
+{
+    <h3>
+        @item.Name
+    </h3>
+
+}
