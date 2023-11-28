@@ -1,0 +1,15 @@
+﻿@model DotNet_TP1.ViewModels.MovieCustomerViewData
+
+<h1>Movie : </h1>
+<h3>
+    @Model.movie.Name
+</h3>
+
+<h1>Watching :</h1>
+@foreach (var item in Model.customers)
+{
+    <h3>
+        @item.Name
+    </h3>
+
+}

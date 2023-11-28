@@ -1,4 +1,5 @@
 ﻿using DotNet_TP1.Models;
+using DotNet_TP1.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DotNet_TP1.Controllers
@@ -26,7 +27,27 @@ namespace DotNet_TP1.Controllers
 
         public IActionResult ByRelease(int year, int month)
         {
-            return Content(year+"   "+month);
+            return Content(year + "   " + month);
+        }
+
+        public IActionResult Viewers()
+        {
+            Movie movie = new Movie()
+            {
+                Name = "movie 1"
+            };
+
+            List<Customer> customers = new List<Customer>(){
+                new Customer{Name="John"},
+                new Customer{Name="Alex"},
+            };
+
+            MovieCustomerViewData vm = new MovieCustomerViewData()
+            {
+                movie = movie,
+                customers = customers
+            };
+            return View(vm);
         }
     }
 }

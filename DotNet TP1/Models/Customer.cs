@@ -1,6 +1,6 @@
 ﻿namespace DotNet_TP1.Models
 {
-    public class Movie
+    public class Customer
     {
         public int Id { get; set; }
         public string? Name { get; set; }
