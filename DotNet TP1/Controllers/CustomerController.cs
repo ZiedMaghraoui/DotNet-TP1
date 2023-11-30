@@ -1,5 +1,7 @@
 ﻿using DotNet_TP1.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace DotNet_TP1.Controllers
 {
@@ -13,13 +15,15 @@ namespace DotNet_TP1.Controllers
 
         public IActionResult Index()
         {
-            var customers = _db.customers.ToList();
+            var customers = _db.customers.Include(c => c.Membershiptype).ToList();
             return View(customers);
         }
 
 
         public IActionResult Create()
         {
+            var membershipTypes = _db.membershiptypes.ToList();
+            ViewBag.MembershiptypeId = new SelectList(membershipTypes, "Id", "Id");
             return View();
         }
 
