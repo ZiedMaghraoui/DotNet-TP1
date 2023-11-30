@@ -31,6 +31,11 @@ namespace DotNet_TP1.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Customer customer)
         {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
+                Create();
+            }
             _db.customers.Add(customer);
             _db.SaveChanges();
             return RedirectToAction(nameof(Index));
@@ -75,7 +80,7 @@ namespace DotNet_TP1.Controllers
                 new Customer{Id=0,Name="John"},
                 new Customer{Id=1, Name="Alex"},
             };
-            Customer customer = customers.Find(c => c.Id == id);
+            Customer? customer = customers.Find(c => c.Id == id);
             return Content("id : " + id + "\tname: " + customer?.Name);
         }
     }

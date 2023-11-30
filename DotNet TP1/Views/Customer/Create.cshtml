@@ -8,6 +8,18 @@
 
 <h4>Customer</h4>
 <hr />
+@if (ViewBag.Errors != null)
+{
+    <div class="text-red ml">
+        <ul>
+            @foreach (string error in ViewBag.Errors)
+            {
+                <li class="ml">@error</li>
+            }
+        </ul>
+    </div>
+}
+
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
