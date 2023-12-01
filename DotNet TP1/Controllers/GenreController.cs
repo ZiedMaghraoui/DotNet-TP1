@@ -1,20 +1,20 @@
 ﻿using DotNet_TP1.Models;
+using DotNet_TP1.Services.ServiceContracts;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace DotNet_TP1.Controllers
 {
     public class GenreController : Controller
     {
-        private readonly ApplicationdbContext _db;
-        public GenreController(ApplicationdbContext db)
+        private readonly IGenreService _genreService;
+        public GenreController(IGenreService genreService)
         {
-            _db = db;
+            _genreService = genreService;
         }
 
         public IActionResult Index()
         {
-            var genres = _db.genres.ToList();
+            var genres = _genreService.GetAllGenres();
             return View(genres);
         }
 
@@ -27,8 +27,7 @@ namespace DotNet_TP1.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Genre genre)
         {
-            _db.genres.Add(genre);
-            _db.SaveChanges();
+            _genreService.AddGenre(genre);
             return RedirectToAction(nameof(Index));
         }
 
@@ -39,7 +38,7 @@ namespace DotNet_TP1.Controllers
                 return NotFound();
             }
 
-            var genre = _db.genres.Find(id);
+            var genre = _genreService.GetGenreById(id);
 
             if (genre == null)
             {
@@ -53,15 +52,13 @@ namespace DotNet_TP1.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(Genre genre)
         {
-            _db.genres.Update(genre);
-            _db.SaveChanges();
+            _genreService.UpdateGenre(genre);
             return RedirectToAction(nameof(Index));
         }
 
         public IActionResult Delete(Genre genre)
         {
-            _db.genres.Remove(genre);
-            _db.SaveChanges();
+            _genreService.DeleteGenre(genre);
             return RedirectToAction(nameof(Index));
         }
     }
