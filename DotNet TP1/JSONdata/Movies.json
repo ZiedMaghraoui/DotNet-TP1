@@ -1,0 +1,27 @@
+[
+  {
+    "Id": 1,
+    "Name": "Movie1",
+    "GenreId": "84ca0bcd-082c-49cb-aa77-ea2f1f5f8285"
+  },
+  {
+    "Id": 2,
+    "Name": "Movie2",
+    "GenreId": "79e6f638-d7e7-4f63-8365-f172cb925381"
+  },
+  {
+    "Id": 3,
+    "Name": "Movie3",
+    "GenreId": "6a3d1534-1fd4-4a8b-9dbd-452f90da8e18"
+  },
+  {
+    "Id": 4,
+    "Name": "Movie4",
+    "GenreId": "79e6f638-d7e7-4f63-8365-f172cb925381"
+  },
+  {
+    "Id": 5,
+    "Name": "Movie5",
+    "GenreId": "84ca0bcd-082c-49cb-aa77-ea2f1f5f8285"
+  }
+]

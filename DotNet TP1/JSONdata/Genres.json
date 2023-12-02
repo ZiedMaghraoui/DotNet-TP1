@@ -6,5 +6,9 @@
   {
     "Id": "79e6f638-d7e7-4f63-8365-f172cb925381",
     "Name": "GenreFromJsonFile2"
+  },
+  {
+    "Id": "6a3d1534-1fd4-4a8b-9dbd-452f90da8e18",
+    "Name": "GenreFromJsonFile3"
   }
 ]

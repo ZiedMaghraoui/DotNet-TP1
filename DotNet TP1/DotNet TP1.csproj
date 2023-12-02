@@ -8,6 +8,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <_ContentIncludedByDefault Remove="jsondata\Movies.json" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.14" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.14">
 			<PrivateAssets>all</PrivateAssets>

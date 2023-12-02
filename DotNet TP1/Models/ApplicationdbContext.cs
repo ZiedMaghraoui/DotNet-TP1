@@ -19,9 +19,17 @@ namespace DotNet_TP1.Models
             string GenreJSon = System.IO.File.ReadAllText("JSONdata/Genres.json");
             List<Genre>? genres = System.Text.Json.
             JsonSerializer.Deserialize<List<Genre>>(GenreJSon);
-            //Seed to categorie
+            //Seed to genres
             foreach (Genre c in genres)
                 model.Entity<Genre>()
+                .HasData(c);
+
+            string MovieJson = System.IO.File.ReadAllText("JSONdata/Movies.json");
+            List<Movie>? movies = System.Text.Json.
+            JsonSerializer.Deserialize<List<Movie>>(MovieJson);
+            //Seed to movies
+            foreach (Movie c in movies)
+                model.Entity<Movie>()
                 .HasData(c);
         }
     }
