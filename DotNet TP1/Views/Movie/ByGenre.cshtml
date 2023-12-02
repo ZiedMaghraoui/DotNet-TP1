@@ -1,0 +1,41 @@
+﻿@* @model IEnumerable<DotNet_TP1.Models.Movie> *@
+@model List<IGrouping<Guid, Movie>>
+
+@{
+    ViewData["Title"] = "ByGenre";
+}
+
+<h1>Movies grouped by genre</h1>
+
+@foreach (var group in Model)
+{
+    var groupName = group.ElementAt(0).Genre.Name;
+    IEnumerable<Movie> moviesInGroup = group;
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    <h3>
+                        @groupName
+                    </h3>
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in moviesInGroup) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                       @*  <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> *@
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

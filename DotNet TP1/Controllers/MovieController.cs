@@ -1,4 +1,5 @@
 ﻿using DotNet_TP1.Models;
+using DotNet_TP1.Services.ServiceContracts;
 using DotNet_TP1.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,6 +7,11 @@ namespace DotNet_TP1.Controllers
 {
     public class MovieController : Controller
     {
+        private readonly IMovieService _movieService;
+        public MovieController(IMovieService movieService)
+        {
+            _movieService = movieService;
+        }
         public IActionResult Index()
         {
             Movie movie = new Movie()
@@ -17,6 +23,44 @@ namespace DotNet_TP1.Controllers
                 new Movie{Name="movie 2"},
                 new Movie{Name="movie 3"},
             };
+            return View(movies);
+        }
+
+        public IActionResult List()
+        {
+            var movies = _movieService.GetAllMovies();
+            return View(movies);
+        }
+
+        public IActionResult InputGenreId()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult ProcessGenreId(GenreIdVM vm)
+        {
+            if (string.IsNullOrWhiteSpace(vm.genreId))
+            {
+                ModelState.AddModelError("GroupId", "Please enter a valid group ID");
+                return View("InputGenreId");
+            }
+
+            // Redirect to the ByGroupId action with the entered group ID
+            Guid genreId = new Guid(vm.genreId);
+            return RedirectToAction("ByGenreId", new { genreId });
+
+        }
+
+        public IActionResult ByGenreId(Guid genreId)
+        {
+            var movies = _movieService.GetMoviesByGenreId(genreId);
+            return View(movies);
+        }
+
+        public IActionResult ByGenre()
+        {
+            var movies = _movieService.GetMoviesByGenre();
             return View(movies);
         }
 
