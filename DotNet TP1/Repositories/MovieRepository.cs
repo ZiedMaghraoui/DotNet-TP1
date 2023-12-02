@@ -23,6 +23,7 @@ namespace DotNet_TP1.Repositories
         {
             return _db.movies
                 .OrderBy(movie => movie.Name)
+                .Include(m=> m.Genre)
                 .ToList();
         }
 

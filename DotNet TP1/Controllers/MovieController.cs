@@ -14,15 +14,7 @@ namespace DotNet_TP1.Controllers
         }
         public IActionResult Index()
         {
-            Movie movie = new Movie()
-            {
-                Name = "movie 1"
-            };
-
-            List<Movie> movies = new List<Movie>(){
-                new Movie{Name="movie 2"},
-                new Movie{Name="movie 3"},
-            };
+            var movies = _movieService.GetAllMovies();
             return View(movies);
         }
 
